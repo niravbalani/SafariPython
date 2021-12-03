@@ -19,7 +19,6 @@ pipeline {
       steps {
         echo 'executing gradle...'
         sh 'gradle wrapper' 
-        sh './gradlew -v'
       }
     }
   }
