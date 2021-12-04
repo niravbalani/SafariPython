@@ -36,13 +36,20 @@ pipeline {
   }
   post {
     always {
-      // run always though build failed
-  
+      steps {
+        echo 'always runs this after build'
+      }
     }
     
     success{
+      steps {
+        echo 'success runs this after build'
+      }
     }
     failure {
+      steps {
+        echo 'Failure runs this after build'
+      }
     }
   }
 }
