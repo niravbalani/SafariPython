@@ -13,6 +13,9 @@ pipeline {
         echo 'build application... works'
         echo "${env.BRANCH_NAME}"
         echo "building version ${NEW_VERSION}"
+        withCredentials([usernamePassword(credentials:'server_cred', usernameVariable:USER, passwordVariable:PWD)]) {
+          echo "build with user ${USER} and password ${PWD} ..."
+        }
         
       }    
     }  
