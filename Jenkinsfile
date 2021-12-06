@@ -3,6 +3,7 @@ pipeline {
   agent any
   environment {
       NEW_VERSION = '1.3.0' 
+      SERVER_CRED = credentials('server_cred')
   }
   stages {
     
@@ -31,10 +32,11 @@ pipeline {
       
       steps{
         echo 'deploy application...works'
+        echo "deploying with ${SERVER_CRED}"
       }    
     }  
   }
-  post {
+/*  post {
     always {
       steps {
         echo 'always runs this after build'
@@ -51,5 +53,5 @@ pipeline {
         echo 'Failure runs this after build'
       }
     }
-  }
+  } */
 }
