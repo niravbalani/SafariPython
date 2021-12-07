@@ -5,6 +5,10 @@ pipeline {
       NEW_VERSION = '1.3.0' 
       SERVER_CRED = credentials('server_cred')
   }
+  parameters {
+    choice(name:VERSION, choices:['1.1.0', '1.2.0', '1.3.0'], description:'Version being deployed')
+    booleanParam(name:executeTest, defaultValue: true, description:'')
+  }
   stages {
     
     stage("build") {
@@ -21,11 +25,12 @@ pipeline {
     stage("test") {
       when {
         expression {
-          env.BRANCH_NAME == 'dev'
+          env.BRANCH_NAME == 'dev' || params.executeTest
         }
       }
       steps{
         echo 'test application...works'
+        echo "deploying during test version ${params.VERSION}"
       }    
     }  
     
